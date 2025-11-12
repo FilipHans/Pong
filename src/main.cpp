@@ -50,10 +50,10 @@ int main()
 
         DrawText(TextFormat("%i", player2_score), 780, 10, 80, WHITE);
         DrawText(TextFormat("%i", player1_score), 440, 10, 80, WHITE);
-        if (player1_score > 1)
+        if (player1_score > 7)
         {
-            DrawText(TextFormat("Player 2 is a loser"), 500, screen_width / 2 - 500, 80, WHITE);
-        } else if (player2_score > 1)
+            DrawText(TextFormat("Player 1 won"), 500, screen_width / 2 - 500, 80, WHITE);
+        } else if (player2_score > 7)
         {
             DrawText(TextFormat("Player 2 won"), 500, screen_width / 2 - 500, 80, WHITE);
         }
