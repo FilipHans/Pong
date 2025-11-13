@@ -3,6 +3,7 @@
 #include <vector>
 #include "player1.h"
 #include "player2.h"
+
     const int screen_width = 1280;
     const int screen_height = 800;
     Player1 player1;
@@ -22,6 +23,14 @@ void Ball::Reset()
 {
     x = screen_height/2;
     y = screen_width/2;
+    if(speedX < 0)
+    {
+        speedX = 5;
+    } else 
+    {
+        speedX = -5;
+    }
+    
 }
 
 void Ball::Update() 

@@ -24,27 +24,27 @@ Player2::Player2()
 
 }
 
-void Player1::Update()
+void Player2::Update()
 {
     if (IsKeyDown(KEY_UP))
     {
-        y -= 8;
+        y <= 0 ? y = y : y -= 8;
     }
     if(IsKeyDown(KEY_DOWN))
     {
-        y += 8;
+        y + 120 >= 800 ? y = y : y += 8 ;
     }
   
 }
-void Player2::Update()
+void Player1::Update()
 {
     if (IsKeyDown(KEY_W))
     {
-        y -= 8;
+        y <= 0 ? y = y : y -= 8;
     }
     if(IsKeyDown(KEY_S))
     {
-        y += 8;
+        y + 120 >= 800 ? y = y : y += 8 ;
     }
   
 }

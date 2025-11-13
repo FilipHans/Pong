@@ -3,11 +3,12 @@
 #include <iostream>
 #include "player1.h"
 #include "player2.h"
+#include <cmath>
 
 using namespace std;
 int player1_score = 0;
 int player2_score = 0;
-int ballspeed = 2;
+int speed_Increase = 2;
 int main() 
 {
     
@@ -33,10 +34,25 @@ int main()
         
         if (CheckCollisionCircleRec({ball.x, ball.y}, 20, {player1.x, player1.y, player1.width, player1.height}))
         {
+            // Add speed up to ball to prevent game going to long?
+            if (ball.speedX < 0)
+            {
+                ball.speedX -= speed_Increase;
+            } else 
+            {
+                ball.speedX += speed_Increase;
+            }
             ball.speedX *= -1;
         }
         if (CheckCollisionCircleRec({ball.x, ball.y}, 20, {player2.x, player2.y, player2.width, player2.height}))
         {
+            if (ball.speedX < 0)
+            {
+                ball.speedX -= speed_Increase;
+            } else 
+            {
+                ball.speedX += speed_Increase;
+            }
             ball.speedX *= -1;
         }
 
@@ -44,12 +60,12 @@ int main()
         ClearBackground(BLACK);
         // Drawing
         player1.Draw();
-
         player2.Draw();
         ball.Draw();
-
+        // Display score
         DrawText(TextFormat("%i", player2_score), 780, 10, 80, WHITE);
         DrawText(TextFormat("%i", player1_score), 440, 10, 80, WHITE);
+        // win con
         if (player1_score > 7)
         {
             DrawText(TextFormat("Player 1 won"), 500, screen_width / 2 - 500, 80, WHITE);
