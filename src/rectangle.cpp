@@ -36,7 +36,7 @@ void Player2::Update()
     }
   
 }
-void Player1::Update()
+void Player1::Update() 
 {
     if (IsKeyDown(KEY_W))
     {

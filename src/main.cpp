@@ -9,10 +9,11 @@ using namespace std;
 int player1_score = 0;
 int player2_score = 0;
 int speed_Increase = 2;
+float previous_player1_position; 
+float previous_player2_position; 
 int main() 
 {
     
-
     const int screen_width = 1280;
     const int screen_height = 800;
     Ball ball;
@@ -35,6 +36,8 @@ int main()
         if (CheckCollisionCircleRec({ball.x, ball.y}, 20, {player1.x, player1.y, player1.width, player1.height}))
         {
             // Add speed up to ball to prevent game going to long?
+            int trajectory_Change = 2;
+            ball.speedY += player1.y == previous_player1_position ? ball.speedY < 0 ? trajectory_Change : -trajectory_Change : ball.speedY < 0 ? -trajectory_Change : trajectory_Change;
             if (ball.speedX < 0)
             {
                 ball.speedX -= speed_Increase;
@@ -42,10 +45,13 @@ int main()
             {
                 ball.speedX += speed_Increase;
             }
+            // returns ball to opposite side
             ball.speedX *= -1;
         }
         if (CheckCollisionCircleRec({ball.x, ball.y}, 20, {player2.x, player2.y, player2.width, player2.height}))
         {
+            int trajectory_Change = 2;
+            ball.speedY += player2.y == previous_player2_position ? ball.speedY < 0 ? trajectory_Change : -trajectory_Change : ball.speedY < 0 ? -trajectory_Change : trajectory_Change;
             if (ball.speedX < 0)
             {
                 ball.speedX -= speed_Increase;
@@ -56,6 +62,8 @@ int main()
             ball.speedX *= -1;
         }
 
+        previous_player1_position = player1.y;
+        previous_player2_position = player2.y;
         // Clear previous drawing
         ClearBackground(BLACK);
         // Drawing
@@ -63,6 +71,7 @@ int main()
         player2.Draw();
         ball.Draw();
         // Display score
+        DrawText(TextFormat("%d", ball.speedY), 550, 330, 80, WHITE);
         DrawText(TextFormat("%i", player2_score), 780, 10, 80, WHITE);
         DrawText(TextFormat("%i", player1_score), 440, 10, 80, WHITE);
         // win con

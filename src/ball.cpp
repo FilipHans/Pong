@@ -23,6 +23,7 @@ void Ball::Reset()
 {
     x = screen_height/2;
     y = screen_width/2;
+    speedY = Ball().speedY;
     if(speedX < 0)
     {
         speedX = 5;
