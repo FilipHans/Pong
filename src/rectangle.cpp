@@ -26,15 +26,18 @@ Player2::Player2()
 
 void Player2::Update()
 {
-    if (IsKeyDown(KEY_UP))
+    if (IsKeyDown(KEY_O))
     {
         y <= 0 ? y = y : y -= 8;
     }
-    if(IsKeyDown(KEY_DOWN))
+    if(IsKeyDown(KEY_L))
     {
         y + 120 >= 800 ? y = y : y += 8 ;
     }
-  
+    if(IsKeyDown(KEY_Q))
+    {
+        x++;
+    }
 }
 void Player1::Update() 
 {
@@ -45,6 +48,10 @@ void Player1::Update()
     if(IsKeyDown(KEY_S))
     {
         y + 120 >= 800 ? y = y : y += 8 ;
+    }
+    if(IsKeyPressed(KEY_X))
+    {
+        height = screen_height;
     }
   
 }

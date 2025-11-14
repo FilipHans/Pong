@@ -30,13 +30,15 @@ int main()
         ball.Update();
         player1.Update();
         player2.Update();
+
         DrawLine(screen_width / 2, 0,screen_width / 2, screen_height, WHITE);
+
         // Checks collition between ball and player
-        
         if (CheckCollisionCircleRec({ball.x, ball.y}, 20, {player1.x, player1.y, player1.width, player1.height}))
         {
-            // Add speed up to ball to prevent game going to long?
             int trajectory_Change = 2;
+            // tripple ternary of doom, checks if player has moved paddle from previous iteration and adjusts speedY accordingly.
+            // Tripple ternary to check if speedY is positive or negative
             ball.speedY += player1.y == previous_player1_position ? ball.speedY < 0 ? trajectory_Change : -trajectory_Change : ball.speedY < 0 ? -trajectory_Change : trajectory_Change;
             if (ball.speedX < 0)
             {
@@ -61,17 +63,16 @@ int main()
             }
             ball.speedX *= -1;
         }
-
+        // Stores Current position to check movement in next iteration
         previous_player1_position = player1.y;
         previous_player2_position = player2.y;
         // Clear previous drawing
-        ClearBackground(BLACK);
+        ClearBackground(PURPLE);
         // Drawing
         player1.Draw();
         player2.Draw();
         ball.Draw();
         // Display score
-        DrawText(TextFormat("%d", ball.speedY), 550, 330, 80, WHITE);
         DrawText(TextFormat("%i", player2_score), 780, 10, 80, WHITE);
         DrawText(TextFormat("%i", player1_score), 440, 10, 80, WHITE);
         // win con
